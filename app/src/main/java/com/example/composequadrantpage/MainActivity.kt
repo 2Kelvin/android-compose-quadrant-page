@@ -29,28 +29,105 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    ComposeQuadrant(
-                        headingText = stringResource(R.string.text_heading),
-                        bodyText = stringResource(R.string.text_body),
-                        headingImg = stringResource(R.string.image_heading),
-                        bodyTextImg = stringResource(R.string.image_body),
-                        headingRow = stringResource(R.string.row_heading),
-                        bodyTextRow = stringResource(R.string.row_body),
-                        headingColumn = stringResource(R.string.column_heading),
-                        bodyTextColumn = stringResource(R.string.column_body)
-                    )
+                    ComposeQuadrantPage()
                 }
             }
         }
     }
 }
 
+//generic info card
+@Composable
+fun InfoCard(
+    title:String,
+    description:String,
+    backgroundColor: Color,
+    modifier: Modifier
+) {
+    Column(
+        modifier
+            .fillMaxSize()
+            .background(backgroundColor)
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+       Text(
+           text = title,
+           fontWeight = FontWeight.Bold,
+           modifier = Modifier.padding(bottom = 16.dp)
+       )
+        Text(
+            text = description,
+            textAlign = TextAlign.Justify
+        )
+    }
+}
+
+//Compose Quadrant Page
+// the "weight" property in both Rows ensures that the space is distributed equally
+@Composable
+fun ComposeQuadrantPage() {
+    Column(Modifier.fillMaxWidth()) {
+        Row(Modifier.weight(1f)) {
+            InfoCard(
+                title = stringResource(R.string.text_heading),
+                description = stringResource(R.string.text_body),
+                backgroundColor = Color.Green,
+                modifier = Modifier.weight(1f)
+            )
+            InfoCard(
+                title = stringResource(R.string.image_heading),
+                description = stringResource(R.string.image_body),
+                backgroundColor = Color.Yellow,
+                modifier = Modifier.weight(1f)
+            )
+        }
+
+        Row(Modifier.weight(1f)) {
+            InfoCard(
+                title = stringResource(R.string.row_heading),
+                description = stringResource(R.string.row_body),
+                backgroundColor = Color.Cyan,
+                modifier = Modifier.weight(1f)
+            )
+            InfoCard(
+                title = stringResource(R.string.column_heading),
+                description = stringResource(R.string.column_body),
+                backgroundColor = Color.LightGray,
+                modifier = Modifier.weight(1f)
+            )
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ComposeQuadrantPreview() {
+    ComposeQuadrantPageTheme {
+        ComposeQuadrantPage()
+        /*
+        ComposeQuadrant(
+            headingText = stringResource(R.string.text_heading),
+            bodyText = stringResource(R.string.text_body),
+            headingImg = stringResource(R.string.image_heading),
+            bodyTextImg = stringResource(R.string.image_body),
+            headingRow = stringResource(R.string.row_heading),
+            bodyTextRow = stringResource(R.string.row_body),
+            headingColumn = stringResource(R.string.column_heading),
+            bodyTextColumn = stringResource(R.string.column_body)
+        )
+        */
+    }
+}
+
+/*
 @Composable
 fun TextComposable(headingText:String, bodyText:String) {
     Column(
         Modifier
             .background(Color.Green)
-            .width(200.dp)
+            .width(175.dp)
             .fillMaxHeight(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -91,7 +168,7 @@ fun RowComposable(headingRow:String, bodyTextRow:String) {
     Column(
         Modifier
             .background(Color.Cyan)
-            .width(200.dp)
+            .width(175.dp)
             .fillMaxHeight(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -137,30 +214,14 @@ fun ComposeQuadrant(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Row(modifier = Modifier.height(200.dp)) {
+        Row(modifier = Modifier.height(400.dp)) {
             TextComposable(headingText = headingText, bodyText = bodyText)
             ImageComposable(headingImg = headingImg, bodyTextImg = bodyTextImg)
         }
-        Row(modifier = Modifier.height(200.dp)) {
+        Row(modifier = Modifier.height(400.dp)) {
             RowComposable(headingRow = headingRow, bodyTextRow = bodyTextRow)
             ColumnComposable(headingColumn = headingColumn, bodyTextColumn = bodyTextColumn)
         }
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun ComposeQuadrantPreview() {
-    ComposeQuadrantPageTheme {
-        ComposeQuadrant(
-            headingText = stringResource(R.string.text_heading),
-            bodyText = stringResource(R.string.text_body),
-            headingImg = stringResource(R.string.image_heading),
-            bodyTextImg = stringResource(R.string.image_body),
-            headingRow = stringResource(R.string.row_heading),
-            bodyTextRow = stringResource(R.string.row_body),
-            headingColumn = stringResource(R.string.column_heading),
-            bodyTextColumn = stringResource(R.string.column_body)
-        )
-    }
-}
+ */
