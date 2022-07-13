@@ -4,7 +4,7 @@
     <string name="text_body">
         Displays text and follows Material Design guidelines.
     </string>
-    <string name="image_heading">Text Composable</string>
+    <string name="image_heading">Image Composable</string>
     <string name="image_body">
         Creates a composable that lays out and draws a given Painter class object.
     </string>
