@@ -48,15 +48,18 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun TextComposable(headingText:String, bodyText:String) {
     Column(
-        Modifier.background(Color.Green),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        Modifier
+            .background(Color.Green)
+            .width(200.dp)
+            .fillMaxHeight(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
         Text(
             text = headingText,
-            modifier = Modifier.padding(bottom =16.dp),
-            fontWeight = FontWeight.Bold,
-//            textAlign = TextAlign.Justify
+            modifier = Modifier
+                .padding(bottom =16.dp),
+            fontWeight = FontWeight.Bold
         )
         Text(
             text = bodyText,
@@ -67,7 +70,13 @@ fun TextComposable(headingText:String, bodyText:String) {
 
 @Composable
 fun ImageComposable(headingImg:String, bodyTextImg:String) {
-    Column {
+    Column(
+        Modifier
+            .background(Color.Yellow)
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
         Text(
             text = headingImg,
             fontWeight = FontWeight.Bold,
@@ -79,7 +88,14 @@ fun ImageComposable(headingImg:String, bodyTextImg:String) {
 
 @Composable
 fun RowComposable(headingRow:String, bodyTextRow:String) {
-    Column() {
+    Column(
+        Modifier
+            .background(Color.Cyan)
+            .width(200.dp)
+            .fillMaxHeight(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Text(
             text = headingRow,
             fontWeight = FontWeight.Bold,
@@ -91,7 +107,13 @@ fun RowComposable(headingRow:String, bodyTextRow:String) {
 
 @Composable
 fun ColumnComposable(headingColumn:String, bodyTextColumn:String) {
-    Column {
+    Column(
+        Modifier
+            .background(Color.LightGray)
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Text(
             text = headingColumn,
             fontWeight = FontWeight.Bold,
@@ -111,11 +133,15 @@ fun ComposeQuadrant(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Row() {
+        Row(modifier = Modifier.height(200.dp)) {
             TextComposable(headingText = headingText, bodyText = bodyText)
             ImageComposable(headingImg = headingImg, bodyTextImg = bodyTextImg)
+        }
+        Row(modifier = Modifier.height(200.dp)) {
             RowComposable(headingRow = headingRow, bodyTextRow = bodyTextRow)
             ColumnComposable(headingColumn = headingColumn, bodyTextColumn = bodyTextColumn)
         }
